@@ -1,0 +1,15 @@
+body {
+    font-size: 20px;
+    font-family: "Helvetica Neue", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+}
+
+.item {
+    margin: 0px;
+    padding: 15px;
+    line-height: 0.6em;
+}
+
+.error {
+    color: red;
+}
+
