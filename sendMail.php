@@ -12,7 +12,7 @@ $post = array();
 $post['dest'] = htmlspecialchars($_SESSION['join']['dest'], ENT_QUOTES);
 $post['subject'] = htmlspecialchars($_SESSION['join']['subject'], ENT_QUOTES);
 $post['body'] = htmlspecialchars($_SESSION['join']['body'], ENT_QUOTES);
-$post['attachments'] = [[$_SESSION['file']['name']]] + [[$_SESSION['file']['type'] . ';base64,' . base64_encode(file_get_contents("training_form/upload/" . $_SESSION['file']['name']))]];
+$post['attachments'] = [[$_SESSION['file']['name']]] + [[$_SESSION['file']['type'] . ';base64,' . base64_encode(file_get_contents("upload/" . $_SESSION['file']['name']))]];
 // headerパラメータ生成;
 
 $data_json = json_encode($post, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);

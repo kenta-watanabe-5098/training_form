@@ -21,7 +21,7 @@ if(!empty($_POST)) {
 
     if(empty($error)) {
         $file = "テスト" . date('YmdHis') . $_FILES['file']['name'];
-        move_uploaded_file($_FILES['file']['tmp_name'], 'training_form/upload/' . $file);
+        move_uploaded_file($_FILES['file']['tmp_name'], 'upload/' . $file);
 
         $_SESSION['join'] = $_POST;
         $_SESSION['file'] = $_FILES['file'];
