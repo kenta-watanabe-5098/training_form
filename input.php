@@ -21,7 +21,7 @@ if(!empty($_POST)) {
 
     if(empty($error)) {
         $file = "テスト" . date('YmdHis') . $_FILES['file']['name'];
-        move_uploaded_file($_FILES['file']['tmp_name'], '../upload/' . $file);
+        move_uploaded_file($_FILES['file']['tmp_name'], 'training_form/upload/' . $file);
 
         $_SESSION['join'] = $_POST;
         $_SESSION['file'] = $_FILES['file'];
@@ -49,14 +49,14 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite' && isset($_SES
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="item">
             <p>送信先</p>
-            <input type="email" name="dest" size="35" value="<?php if(!isset($error) && isset($_POST['dest'])) {print(htmlspecialchars($_POST['dest'], ENT_QUOTES));} ?>"><br/>
+            <input type="email" name="dest" size="35" value="<?php if(isset($error) || isset($_POST['dest'])) {print(htmlspecialchars($_POST['dest'], ENT_QUOTES));} ?>"><br/>
             <?php if(isset($error['dest']) && $error['dest'] === 'blank') : ?>
                 <p class="error">※正しく入力ください</p>
             <?php endif; ?>
         </div>  
         <div class="item">
             <p class="caption">タイトル</p>
-            <input type="text" name="subject" size="20" value="<?php if(!isset($error) && isset($_POST['subject'])) {print(htmlspecialchars($_POST['subject'], ENT_QUOTES));} ?>"><br/>
+            <input type="text" name="subject" size="20" value="<?php if(isset($error) || isset($_POST['subject'])) {print(htmlspecialchars($_POST['subject'], ENT_QUOTES));} ?>"><br/>
             <?php if(isset($error['subject']) && $error['subject'] === 'blank') : ?>
                 <p class="error">※正しく入力ください</p>
             <?php endif; ?>
@@ -64,7 +64,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite' && isset($_SES
 
         <div class="item">
             <p class="caption">本文</p>
-            <textarea name="body" cols="50" rows="10" placeholder="こちらに記入ください"><?php if(!isset($error) && isset($_POST['body'])) {print(htmlspecialchars($_POST['body'], ENT_QUOTES));} ?></textarea><br/>
+            <textarea name="body" cols="50" rows="10" placeholder="こちらに記入ください"><?php if(isset($error) || isset($_POST['body'])) {print(htmlspecialchars($_POST['body'], ENT_QUOTES));} ?></textarea><br/>
             <?php if(isset($error['body']) && $error['body'] === 'blank') : ?>
                 <p class="error">※入力は必須です</p>
             <?php endif; ?>
@@ -73,7 +73,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite' && isset($_SES
         <div class="item">
             <p class="caption">ファイル</p>
             <input type="file" name="file"><br/><br/>
-            <?php if(isset($error['file']) && $error['file'] === 'blank') : ?>
+            <?php if(isset($error['file']) && $error['file'] === 'empty') : ?>
                 <p class="error">※添付は必須です</p>
             <?php endif; ?>
             <?php if(!isset($error) && empty($error) && isset($_POST['dest'])): ?>
