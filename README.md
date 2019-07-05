@@ -10,10 +10,12 @@ input.php<br/>
 confirm.php<br/>
 sendMail.php<br/>
 thanks.html<br/>
-/css/style.css<br/><br/>
+/css/style.css<br/>
+※追加　/upload/<br/><br/>
 
 追加内容<br/>
 ・input.phpの入力値に対するバリデーション機能<br/>
 ・confirm画面ページの追加<br/>
 ・thanks.htmlページの追加<br/>
-・スタイルシートの追加<br/>
+・スタイルシートの追加<br/><br/>
+・バリデーションの不具合修正7月5日<br/>
