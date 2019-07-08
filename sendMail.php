@@ -7,13 +7,15 @@ if(!isset($_SESSION['join'])) {
 
 $url = "https://hlw9zpstkf.execute-api.ap-northeast-1.amazonaws.com";
 $header = ['Content-Type: multipart/form-data','x-api-key : wFRndCxe2ido3kcCvUQa8OFw0W5wfEf7UJRZ1Rfb'];
+$file = file_get_contents('./upload/' . $_SESSION['file']['name']);
 
 $post = array();
 $post['dest'] = htmlspecialchars($_SESSION['join']['dest'], ENT_QUOTES);
 $post['subject'] = htmlspecialchars($_SESSION['join']['subject'], ENT_QUOTES);
 $post['body'] = htmlspecialchars($_SESSION['join']['body'], ENT_QUOTES);
-$post['attachments'] = [[$_SESSION['file']['name']]] + [[$_SESSION['file']['type'] . ';base64,' . base64_encode(file_get_contents("upload/" . $_SESSION['file']['name']))]];
+$post['attachments'] = array(array($_SESSION['file']['name'], 'data:' . $_SESSION['file']['type'] . ';base64,' . base64_encode($file)));
 // headerパラメータ生成;
+
 
 $data_json = json_encode($post, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 // JSONエンコード;

@@ -20,11 +20,11 @@ if(!empty($_POST)) {
 	}
 
     if(empty($error)) {
-        $file = "テスト" . date('YmdHis') . $_FILES['file']['name'];
-        move_uploaded_file($_FILES['file']['tmp_name'], 'upload/' . $file);
+        $file = $_FILES['file'];
+        move_uploaded_file($file['tmp_name'], 'upload/' . $file['name']);
 
         $_SESSION['join'] = $_POST;
-        $_SESSION['file'] = $_FILES['file'];
+        $_SESSION['file'] = $file;
 
         header('Location: confirm.php');
         exit();
